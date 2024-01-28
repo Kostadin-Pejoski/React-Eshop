@@ -1,3 +1,31 @@
-nav a{
-  margin: 10px;
+*,*::after,*::before{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightslategray;
+  padding: 1rem;
+  font-family: sans-serif;
+}
+
+header p{
+  font-weight: bold;
+}
+
+nav a{
+  text-decoration: none;
+  margin-right: 0.5em;
+  color: black;
+}
+
+nav a:hover, a.current{
+  background-color: white;
+  padding: 0.4em;
+}
+
