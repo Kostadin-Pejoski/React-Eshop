@@ -29,3 +29,18 @@ nav a:hover, a.current{
   padding: 0.4em;
 }
 
+form{
+  width: 40%;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  padding: 2em;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid black;
+  border-radius: 20px;
+}
+
+form * {
+  margin-bottom: 1em;
+}

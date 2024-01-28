@@ -1,7 +1,10 @@
+import Header from "../Components/Header";
+
 export default function ProductsPage(){
     return(
         <div>
-            ProductsPage
+            <Header/>
+            <ProductsMain/>
         </div>
     )
 }

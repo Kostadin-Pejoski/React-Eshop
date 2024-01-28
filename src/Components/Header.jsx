@@ -6,9 +6,9 @@ export default function Header(){
             <p>Place holder shop name</p>
             <nav>
                 <Link to='/'>Home</Link>
-                <Link to='checkout'>Checkout</Link>
-                <Link to='login'>Login</Link>
-                <Link to='products'>Products</Link>
+                <Link to='/checkout'>Checkout</Link>
+                <Link to='/login'>Login</Link>
+                <Link to='/products'>Products</Link>
             </nav>
         </header>
     )
