@@ -79,3 +79,49 @@ nav a:hover{
   font-size: 2em;
   font-weight: bold;
 }
+
+.product {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px; 
+  max-width: 300px;
+  text-align: center;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 12px;
+  max-height: 160px;
+}
+
+.category {
+  font-weight: bold;
+}
+
+.miscInProduct {
+  margin-top: 8px;
+}
+
+.products{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+}
+
+
+.addToCartButton {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.addToCartButton:hover {
+  background-color: #45a049;
+}
