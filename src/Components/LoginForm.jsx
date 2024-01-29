@@ -1,20 +1,37 @@
-import { useNavigate } from "react-router"
-
-export default function LoginForm(){
+import { useRef} from "react"
+export default function LoginForm(props){
+    const nameInput = useRef()
+    const lastNameInput = useRef()
+    const passwordInput = useRef()
     function prevent(e){
         e.preventDefault()
     }
-    const navigate=useNavigate()
     function loginFunc(){
-        navigate(-1)
+        if(nameInput.current.value==='' || lastNameInput.current.value==='' || passwordInput.current.value===''){
+            alert('not all fields are filled in')
+            return
+        }
+        else{
+            props.handleLogin(nameInput.current.value,lastNameInput.current.value,passwordInput.current.value)       
+        }
     }
-
-    return (
-        <form onSubmit={prevent}>
-            <input type="text" placeholder="first name"/>
-            <input type="text" placeholder="last name"/>
-            <input type="text" placeholder="password"/>
-            <button onClick={loginFunc}>Log in</button>
+    const form =  <form className="login-container" onSubmit={prevent}>
+        <input ref={nameInput} className="input-field" type="text" placeholder="first name"/>
+        <input  ref={lastNameInput} className="input-field" type="text" placeholder="last name"/>
+        <input ref={passwordInput} className="input-field" type="password" placeholder="password"/>
+        <button className="login-button" onClick={loginFunc}>Log in</button>
         </form>
+    let render
+    if(props.user==null){
+        render=form
+    }
+    else{
+        render=<div className="logged-in-message">
+            <p>Sucessfull login</p>
+            <p>Welcome back {props.user.firstName} {props.user.lastName}</p>
+        </div>
+    }
+    return (
+       render
     )
 }
