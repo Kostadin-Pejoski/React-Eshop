@@ -26,10 +26,48 @@ function App() {
       let currentUser={
         firstName:firstName,
         lastName:lastName,
-        password:password
+        password:password,
+        cart:new Map(),
+        calculateTotal:function (){
+          let total=0
+          this.cart.forEach((value,key)=>{
+            total+=value.quanitity*value.price
+          })
+          return total
+        },
+        generateCartLiElements:function(){
+           return Array.from(this.cart.values()).map(product=>
+            <li class="product-item">
+            <p class="placeholder">Name: {product.name}</p>
+            <p class="placeholder">Quantity: {product.quanitity}</p>
+            <p class="placeholder">Price per one: {product.price}$</p>
+            <p class="placeholder">Total: {product.quanitity*product.price}$</p>
+            </li>
+           )
+        }
       }
       setUser(currentUser)
     }
+  }
+
+  function handleAddProduct(product){
+    if(user.cart.has(product.id)){
+      setUser(prevUser=>{
+        let updateUser={...prevUser}
+        let updatedProduct=updateUser.cart.get(product.id)
+        updatedProduct.quanitity=updatedProduct.quanitity+1
+        updateUser.cart.set(product.id,updatedProduct)
+        return updateUser
+      })
+    }
+    else{
+      setUser(prevUser=>{
+        let updateUser={...prevUser}
+        updateUser.cart.set(product.id,product)
+        return updateUser
+      })
+    }
+    console.log(user.calculateTotal())
   }
 
   function handleLogOut(){
@@ -45,7 +83,7 @@ function App() {
             <Route element={<LoginPage user={user} handleLogin={handleLogin}></LoginPage>} path='/login'/>
             <Route element={<CheckOutPage></CheckOutPage>} path='/checkout'/>
             <Route element={
-            <ProductsContext.Provider value={products}>
+            <ProductsContext.Provider value={{products,handleAddProduct}}>
             <ProductsPage></ProductsPage>
             </ProductsContext.Provider>
             } path='products'/>

@@ -17,8 +17,8 @@ export default function Header(){
             <p>Pazar 4</p>
             <nav>
                 <NavLink to='/'>Home</NavLink>
-                <NavLink to='/checkout'>Checkout</NavLink>
-                <NavLink to='/products'>Products</NavLink>
+                {value.user!=null && <NavLink to='/checkout'>Checkout</NavLink>}
+                {value.user!=null && <NavLink to='/products'>Products</NavLink>}
                 {loginLogout}
             </nav>
         </header>

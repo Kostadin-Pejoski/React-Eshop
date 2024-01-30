@@ -125,3 +125,65 @@ nav a:hover{
 .addToCartButton:hover {
   background-color: #45a049;
 }
+
+
+.order-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.total-price {
+  font-size: 24px;
+}
+
+.product-list-heading {
+  font-size: 20px;
+  /* margin-top: 15px; */
+  margin: auto;
+  width: 30%;
+}
+
+   
+.product-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 10px;
+  margin: auto;
+  width: 30%;
+}
+
+    
+.placeholder {
+  margin: 0;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.confirm-checkout-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.confirm-checkout-btn:hover {
+  background-color: #45a049;
+}
+
+.short{
+  width: 20%;
+  display: block;
+}
