@@ -1,6 +1,6 @@
 export default function HomePageMain(){
     return (
-        <div>
+        <div className="homePageMain">
             Home page main
         </div>
     )

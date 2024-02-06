@@ -187,3 +187,16 @@ nav a:hover{
   width: 20%;
   display: block;
 }
+
+.homePageMain{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/public/background.avif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:600px;
+  font-weight: bold;
+  color: white;
+  font-size: 5em;
+}
