@@ -190,8 +190,8 @@ nav a:hover{
 
 .homePageMain{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   background-image: url('/public/background.avif');
   background-repeat: no-repeat;
   background-size: cover;
@@ -199,4 +199,6 @@ nav a:hover{
   font-weight: bold;
   color: white;
   font-size: 5em;
+  padding: 2em;
+  text-align: center;
 }
