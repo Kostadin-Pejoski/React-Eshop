@@ -1,8 +1,11 @@
-import { ProductsContext } from "../App"
+import { ProductsContext, UserContext } from "../App"
 import { useContext } from "react"
 
 export default function Product(props){
     const {handleAddProduct} = useContext(ProductsContext)
+    const {user} = useContext(UserContext)
+
+    console.log(user)
     const currentProduct={
         price:props.price,
         id:props.id,
@@ -16,7 +19,7 @@ export default function Product(props){
             <p className="miscInProduct">Rating: {props.rating}</p>
             <p className="miscInProduct">Title: {props.title}</p>
             <img className="product-image" src={props.image} alt={props.description}/>
-            <button onClick={()=>handleAddProduct(currentProduct)} className="addToCartButton">Add To Cart</button>
+            {!user.cart.has(props.id) &&<button onClick={()=>handleAddProduct(currentProduct)} className="addToCartButton">Add To Cart</button>}
         </div>
     )
 }

@@ -42,6 +42,10 @@ function App() {
             <p class="placeholder">Quantity: {product.quanitity}</p>
             <p class="placeholder">Price per one: {product.price}$</p>
             <p class="placeholder">Total: {product.quanitity*product.price}$</p>
+            <div className='quantityDiv'>
+              <button className='quantityBtn' onClick={()=>handleQuantityChange(product.id,'increment')}>+</button>
+              <button className='quantityBtn' onClick={()=>handleQuantityChange(product.id,'decrement')}>-</button>
+            </div>
             </li>
            )
         }
@@ -50,24 +54,33 @@ function App() {
     }
   }
 
+  function handleQuantityChange(id,action){
+    setUser(prevUser=>{
+          let updateUser={...prevUser}
+          let updatedProduct=updateUser.cart.get(id)
+          if(action==='increment'){
+            updatedProduct.quanitity=updatedProduct.quanitity+1
+          }
+          else{
+            if(updatedProduct.quanitity===1){
+              updateUser.cart.delete(id)
+              return updateUser
+            }
+            else{
+              updatedProduct.quanitity=updatedProduct.quanitity-1
+            }
+          }
+          updateUser.cart.set(id,updatedProduct)
+          return updateUser
+        })
+  }
+
   function handleAddProduct(product){
-    if(user.cart.has(product.id)){
-      setUser(prevUser=>{
-        let updateUser={...prevUser}
-        let updatedProduct=updateUser.cart.get(product.id)
-        updatedProduct.quanitity=updatedProduct.quanitity+1
-        updateUser.cart.set(product.id,updatedProduct)
-        return updateUser
-      })
-    }
-    else{
       setUser(prevUser=>{
         let updateUser={...prevUser}
         updateUser.cart.set(product.id,product)
         return updateUser
       })
-    }
-    console.log(user.calculateTotal())
   }
 
   function handleLogOut(){

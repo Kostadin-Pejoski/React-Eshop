@@ -193,12 +193,36 @@ nav a:hover{
   /* justify-content: center; */
   /* align-items: center; */
   background-image: url('/public/background.avif');
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   background-size: cover;
-  height:600px;
+  min-height:600px;
   font-weight: bold;
   color: white;
   font-size: 5em;
   padding: 2em;
   text-align: center;
+}
+
+.quantityDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantityBtn{
+  height: 2em;
+  width: 2em;
+  /* padding: 0.5em; */
+  border-radius: 50%;
+  background-color: #333;
+  color: wheat;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.quantityBtn:hover{
+  cursor: pointer;
+  background-color: #161515;
 }
