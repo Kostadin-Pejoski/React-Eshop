@@ -4,6 +4,7 @@ import CheckOutPage from './Pages/CheckoutPage'
 import ProductsPage from './Pages/ProductsPage'
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import { useState,createContext, useEffect} from 'react'
+import CartProduct from './Components/CartProduct'
 
 export const UserContext = createContext()
 export const ProductsContext = createContext()
@@ -36,18 +37,7 @@ function App() {
           return total
         },
         generateCartLiElements:function(){
-           return Array.from(this.cart.values()).map(product=>
-            <li class="product-item">
-            <p class="placeholder">Name: {product.name}</p>
-            <p class="placeholder">Quantity: {product.quanitity}</p>
-            <p class="placeholder">Price per one: {product.price}$</p>
-            <p class="placeholder">Total: {product.quanitity*product.price}$</p>
-            <div className='quantityDiv'>
-              <button className='quantityBtn' onClick={()=>handleQuantityChange(product.id,'increment')}>+</button>
-              <button className='quantityBtn' onClick={()=>handleQuantityChange(product.id,'decrement')}>-</button>
-            </div>
-            </li>
-           )
+           return Array.from(this.cart.values()).map(product=><CartProduct product={product}/>)
         }
       }
       setUser(currentUser)
@@ -88,7 +78,7 @@ function App() {
   }
 
   return (
-        <UserContext.Provider value={{user:user,handleLogOut:handleLogOut,handleLogin:handleLogin}}>
+        <UserContext.Provider value={{user:user,handleLogOut:handleLogOut,handleLogin:handleLogin,handleAddProduct,handleQuantityChange}}>
         <BrowserRouter>
           <Routes>
             <Route element={<HomePage></HomePage>} path='/home'/>
