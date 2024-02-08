@@ -226,3 +226,16 @@ nav a:hover{
   cursor: pointer;
   background-color: #161515;
 }
+
+.productsMain{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em;
+  font-weight: bold;
+  font-size: 3em;
+}
+
+.productsMain select{
+  height: 3em;
+}

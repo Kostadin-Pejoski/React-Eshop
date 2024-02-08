@@ -12,8 +12,18 @@ export default  function ProductsMain(){
         rating={product.rating.rate}
      />)
     return (
-        <div className="products">
+        <div>
+            <div className="productsMain">
+                <label htmlFor="sortByLabel">Sort by:</label>
+                <select id="sortByLabel">
+                    <option>Cheapest first</option>                    
+                    <option>Most expensive first</option>                    
+                    <option>Ratting</option>                    
+                </select>
+            </div>
+            <div className="products">
             {productsElements}        
+            </div>
         </div>
     )
 }
