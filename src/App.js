@@ -44,6 +44,26 @@ function App() {
     }
   }
 
+
+  function handleProductsSorting(sortBy){
+      if(sortBy==='ratting worst'){
+        setProducts(prevProducts=>[...prevProducts].sort((a,b)=>a.rating.rate>b.rating.rate ? 1: -1))
+      }
+      else if(sortBy==='ratting best'){
+        setProducts(prevProducts=>[...prevProducts].sort((a,b)=>a.rating.rate>b.rating.rate ? -1: 1))
+      }
+      else if(sortBy==='expensive'){
+        setProducts(prevProducts=>[...prevProducts].sort((a,b)=>a.price>b.price ? -1: 1))
+      }
+      else if(sortBy==='cheapest'){
+        setProducts(prevProducts=>[...prevProducts].sort((a,b)=>a.price>b.price ? 1: -1))
+        
+      }
+      else{
+        setProducts(prevProducts=>[...prevProducts].sort((a,b)=>a.id>b.id ? 1: -1))
+      }
+  }
+
   function handleQuantityChange(id,action){
     setUser(prevUser=>{
           let updateUser={...prevUser}
@@ -86,7 +106,7 @@ function App() {
             <Route element={<LoginPage user={user} handleLogin={handleLogin}></LoginPage>} path='/login'/>
             <Route element={<CheckOutPage></CheckOutPage>} path='/checkout'/>
             <Route element={
-            <ProductsContext.Provider value={{products,handleAddProduct}}>
+            <ProductsContext.Provider value={{products,handleAddProduct,handleProductsSorting}}>
             <ProductsPage></ProductsPage>
             </ProductsContext.Provider>
             } path='products'/>
