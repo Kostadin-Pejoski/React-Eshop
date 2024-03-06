@@ -1,26 +1,12 @@
-import {NavLink } from "react-router-dom"
 import '../index.css'
-import { UserContext } from "../App"
-import { useContext } from "react"
+import { Navbar } from "./Navbar"
 
 export default function Header(){
-    const value = useContext(UserContext)
-    let loginLogout
-    if(value.user==null){
-        loginLogout=<NavLink to='/login'>Log in</NavLink>
-    }
-    else{
-        loginLogout=<NavLink onClick={value.handleLogOut} to='/login'>Log Out</NavLink>
-    }
+    
     return(
         <header>
             <p>Pazar 4</p>
-            <nav>
-                <NavLink to='/'>Home</NavLink>
-                {value.user!=null && <NavLink to='/checkout'>Checkout</NavLink>}
-                {value.user!=null && <NavLink to='/products'>Products</NavLink>}
-                {loginLogout}
-            </nav>
+            <Navbar />
         </header>
     )
 }
