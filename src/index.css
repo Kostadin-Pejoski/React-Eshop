@@ -5,6 +5,12 @@
 }
 
 
+#root{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 header{
   display: flex;
   justify-content: space-between;
@@ -196,6 +202,7 @@ nav a:hover{
   font-size: 5em;
   padding: 2em;
   text-align: center;
+  flex-grow: 1;
 }
 
 .quantityDiv{

@@ -1,23 +1,33 @@
 import { useRef} from "react"
 export default function LoginForm(props){
-    const nameInput = useRef()
-    const lastNameInput = useRef()
     const passwordInput = useRef()
+    const userNameInput = useRef()
     function prevent(e){
         e.preventDefault()
     }
     function loginFunc(){
-        if(nameInput.current.value==='' || lastNameInput.current.value==='' || passwordInput.current.value===''){
+        if(passwordInput.current.value==='' || userNameInput.current.value===''){
             alert('not all fields are filled in')
             return
         }
         else{
-            props.handleLogin(nameInput.current.value,lastNameInput.current.value,passwordInput.current.value)       
+            if(localStorage.getItem(userNameInput.current.value)==null){
+                alert('no such user exists')
+                // userNameInput.current.value=''
+                // passwordInput.current.value=''
+                // nameInput.current.value=''
+                // lastNameInput.current.value=''
+            }
+            else{
+
+                if(props.handleLogin(userNameInput.current.value,passwordInput.current.value)===false){
+                    alert('wrong password')
+                }
+            }
         }
     }
     const form =  <form className="login-container" onSubmit={prevent}>
-        <input ref={nameInput} className="input-field" type="text" placeholder="first name"/>
-        <input  ref={lastNameInput} className="input-field" type="text" placeholder="last name"/>
+        <input ref={userNameInput} className="input-field" type="text" placeholder="user name"/>
         <input ref={passwordInput} className="input-field" type="password" placeholder="password"/>
         <button className="login-button" onClick={loginFunc}>Log in</button>
         </form>

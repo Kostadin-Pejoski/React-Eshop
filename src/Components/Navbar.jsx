@@ -5,14 +5,6 @@ export function Navbar() {
 
     
     const value = useContext(UserContext)
-    let loginLogout
-    if(value.user==null){
-        loginLogout=<NavLink to='/login'>Log in</NavLink>
-    }
-    else{
-        loginLogout=<NavLink onClick={value.handleLogOut} to='/login'>Log Out</NavLink>
-    }
-
     const [visible,setVisible] = useState(false)
 
     useEffect(()=>{
@@ -31,7 +23,8 @@ export function Navbar() {
     <NavLink to='/'>Home</NavLink>
     {value.user!=null && <NavLink to='/checkout'>Checkout</NavLink>}
     {value.user!=null && <NavLink to='/products'>Products</NavLink>}
-    {loginLogout}
+    <NavLink to='/register'>Register</NavLink>
+    {value.user==null?<NavLink to='/login'>Log in</NavLink>:<NavLink onClick={value.handleLogOut} to='/login'>Log Out</NavLink>}
     </nav>
 
     return (

@@ -4,7 +4,8 @@ import CheckOutPage from './Pages/CheckoutPage'
 import ProductsPage from './Pages/ProductsPage'
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import { useState,createContext, useEffect} from 'react'
-import CartProduct from './Components/CartProduct'
+import Register from './Pages/Register'
+import User from './User'
 
 export const UserContext = createContext()
 export const ProductsContext = createContext()
@@ -22,25 +23,14 @@ function App() {
     setProducts(json)
   }
 
-  function handleLogin(firstName,lastName,password){
+  function handleLogin(userName,passowrd){
     if(user==null){
-      let currentUser={
-        firstName:firstName,
-        lastName:lastName,
-        password:password,
-        cart:new Map(),
-        calculateTotal:function (){
-          let total=0
-          this.cart.forEach((value,key)=>{
-            total+=value.quanitity*value.price
-          })
-          return total
-        },
-        generateCartLiElements:function(){
-           return Array.from(this.cart.values()).map(product=><CartProduct product={product}/>)
+      let currentUser=JSON.parse(localStorage.getItem(userName))
+        if(currentUser.password===passowrd){
+          setUser(new User(currentUser))
+          return true
         }
-      }
-      setUser(currentUser)
+        return false
     }
   }
 
@@ -66,7 +56,7 @@ function App() {
 
   function handleQuantityChange(id,action){
     setUser(prevUser=>{
-          let updateUser={...prevUser}
+          let updateUser=new User(prevUser)
           let updatedProduct=updateUser.cart.get(id)
           if(action==='increment'){
             updatedProduct.quanitity=updatedProduct.quanitity+1
@@ -87,7 +77,7 @@ function App() {
 
   function handleAddProduct(product){
       setUser(prevUser=>{
-        let updateUser={...prevUser}
+        let updateUser=new User(prevUser)
         updateUser.cart.set(product.id,product)
         return updateUser
       })
@@ -102,6 +92,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<HomePage></HomePage>} path='/home'/>
+            <Route element={<Register></Register>} path='/register'/>
             <Route index element={<HomePage></HomePage>}/>
             <Route element={<LoginPage user={user} handleLogin={handleLogin}></LoginPage>} path='/login'/>
             <Route element={<CheckOutPage></CheckOutPage>} path='/checkout'/>
